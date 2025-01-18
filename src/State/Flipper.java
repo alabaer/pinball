@@ -18,6 +18,10 @@ public class Flipper {
         return balls * 3;
     }
 
+    public void setBalls(int balls) {
+        this.balls = balls;
+    }
+
     private Flipper() {
         state = new NoCredit(this);
     }
