@@ -3,6 +3,8 @@ package Compositum;
 import Command.Command;
 import FlipperElements.Element;
 import FlipperElements.Target;
+import Visitor.Pointsvisitor;
+import Visitor.Resetvisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,12 +57,12 @@ public class FlipperElementCompositum implements Element {
     }
 
     @Override
-    public void acceptResetVisitor() {
-
+    public void acceptResetVisitor(Resetvisitor resetvisitor) {
+        resetvisitor.visit(this);
     }
 
     @Override
-    public void acceptScoreVisitor() {
+    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
 
     }
 }
