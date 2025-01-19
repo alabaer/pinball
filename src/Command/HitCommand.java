@@ -1,13 +1,13 @@
 package Command;
 
-import FlipperElements.Elements;
+import FlipperElements.Element;
 
 public class HitCommand implements Command {
-    Elements elements;
+    Element element;
 
 
     @Override
     public void execute() {
-        elements.setElementHitCount(elements.getElementHitCount() + 1);
+        element.setElementHitCount(element.getElementHitCount() + 1);
     }
 }

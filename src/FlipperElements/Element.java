@@ -1,6 +1,6 @@
 package FlipperElements;
 
-public interface Elements {
+public interface Element {
     void hit();
 
     void setElementScoreValue(Integer elementScoreValue);

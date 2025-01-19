@@ -1,13 +1,13 @@
 package Command;
 
-import FlipperElements.Elements;
+import FlipperElements.Element;
 
 public class ChangeStateCommand implements Command {
 
-    private Elements elements;
+    private Element element;
 
     @Override
     public void execute() {
-    elements.setElementStatus();
+    element.setElementStatus();
     }
 }
