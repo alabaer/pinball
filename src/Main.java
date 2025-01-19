@@ -1,3 +1,5 @@
+import Adapter.Flashinglights;
+import Adapter.FlashinglightsCommandAdapter;
 import Command.HitCommand;
 import Command.*;
 import Compositum.CommandCompositum;
@@ -11,19 +13,32 @@ public class Main {
         TargetMediator mediator = new TargetMediator();
         Target a = new Target(mediator);
         Target b = new Target(mediator);
-        FlipperElementCompositum compositum = new FlipperElementCompositum(a,b);
-        Command hit = new HitCommand(a);
-        Command hitb = new ChangeStateCommand(b);
-        Command changeState = new ChangeStateCommand(a);
-        CommandCompositum commands = new CommandCompositum();
-        mediator.addTarget(compositum.getTargets());
+        FlipperElementCompositum compositum = new FlipperElementCompositum(a, b);
+        Command hita = new HitCommand(a);
+        Command hitb = new HitCommand(b);
+        Command changeStateb = new ChangeStateCommand(b);
+        Command changeStatea = new ChangeStateCommand(a);
+        CommandCompositum commandsa = new CommandCompositum();
+        CommandCompositum commandsb = new CommandCompositum();
+        Flashinglights flash = new Flashinglights();
+        Command flashing = new FlashinglightsCommandAdapter(flash);
+        mediator.addTargets(compositum.getTargets());
+        commandsa.addCommand(hita);
+        commandsa.addCommand(changeStatea);
+        commandsb.addCommand(changeStateb);
+        commandsb.addCommand(hitb);
+        commandsb.addCommand(flashing);
+        System.out.println(b.getElementStatus());
+        b.hit(commandsb);
+        System.out.println(b.getElementStatus());
+        b.hit(commandsb);
+        System.out.println(a.getElementStatus());
+        a.hit(commandsa);
+        System.out.println(a.getElementStatus());
+
         mediator.mediate(compositum);
-        commands.addCommand(hit);
-        commands.addCommand(changeState);
-        commands.addCommand(hitb);
-        b.hit(commands);
-        a.hit(commands);
         System.out.println(b.getElementStatus());
         System.out.println(a.getElementStatus());
+        b.hit(commandsb);
     }
 }
