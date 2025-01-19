@@ -1,4 +1,8 @@
 package AbstractFactory;
 
-public class CoindropA {
+public class CoindropA implements CreateText{
+    @Override
+    public void create() {
+
+    }
 }

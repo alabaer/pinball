@@ -1,4 +1,8 @@
 package AbstractFactory;
 
-public class LoseBallB {
+public class LoseBallB implements CreateText {
+    @Override
+    public void create() {
+
+    }
 }

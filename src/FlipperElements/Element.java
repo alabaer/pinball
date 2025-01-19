@@ -1,5 +1,8 @@
 package FlipperElements;
 import Command.*;
+import Visitor.Pointsvisitor;
+import Visitor.Resetvisitor;
+
 public interface Element {
     void hit(Command command);
 
@@ -13,7 +16,7 @@ public interface Element {
 
     boolean getElementStatus();
 
-    void acceptResetVisitor();
+    void acceptResetVisitor(Resetvisitor resetvisitor);
 
-    void acceptScoreVisitor();
+    void acceptScoreVisitor(Pointsvisitor pointsvisitor);
 }

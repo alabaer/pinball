@@ -2,6 +2,8 @@ package FlipperElements;
 
 import Command.Command;
 import Mediator.TargetMediator;
+import Visitor.Pointsvisitor;
+import Visitor.Resetvisitor;
 
 public class Target implements Element {
     private int elementScore = 50;
@@ -44,11 +46,13 @@ public class Target implements Element {
     }
 
     @Override
-    public void acceptResetVisitor() {
-
+    public void acceptResetVisitor(Resetvisitor visitor) {
+        visitor.visit(this);
     }
 
     @Override
-    public void acceptScoreVisitor() {
+    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+        pointsvisitor.visit(this);
     }
+
 }

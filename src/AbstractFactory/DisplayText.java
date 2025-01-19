@@ -1,5 +1,5 @@
 package AbstractFactory;
 
-public interface AbstractFactory<T> {
-    T createMessage(String message);
+public interface DisplayText<T> {
+    T displayText(String message);
 }

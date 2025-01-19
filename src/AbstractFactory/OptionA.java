@@ -1,4 +1,8 @@
 package AbstractFactory;
 
-public class OptionA {
+public class OptionA implements CreateText {
+    @Override
+    public void create() {
+
+    }
 }

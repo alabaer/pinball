@@ -1,4 +1,8 @@
 package AbstractFactory;
 
-public class NoCreditStateB {
+public class NoCreditStateB implements CreateText{
+    @Override
+    public void create() {
+
+    }
 }
