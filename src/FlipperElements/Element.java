@@ -1,9 +1,7 @@
 package FlipperElements;
-
+import Command.*;
 public interface Element {
-    void hit();
-
-    void setElementScoreValue(Integer elementScoreValue);
+    void hit(Command command);
 
     int getElementScore();
 
@@ -11,11 +9,11 @@ public interface Element {
 
     int getElementHitCount();
 
-    void setElementStatus();
+    void setElementStatus(Boolean isHit);
 
-    void getElementStatus();
+    boolean getElementStatus();
 
-    int acceptResetVisitor();
+    void acceptResetVisitor();
 
-    int acceptScoreVisitor();
+    void acceptScoreVisitor();
 }

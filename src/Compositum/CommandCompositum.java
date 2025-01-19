@@ -5,10 +5,10 @@ import Command.Command;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Compositum implements Command {
+public class CommandCompositum implements Command {
     private List<Command> commands;
 
-    public Compositum() {
+    public CommandCompositum() {
         this.commands = new ArrayList<Command>();
     }
 

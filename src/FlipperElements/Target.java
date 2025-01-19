@@ -1,48 +1,54 @@
 package FlipperElements;
 
-public class Target implements Element{
-    @Override
-    public void hit() {
+import Command.Command;
+import Mediator.TargetMediator;
 
+public class Target implements Element {
+    private int elementScore = 50;
+    public int hitCount = 0;
+    private boolean isHit = false;
+    private TargetMediator mediator;
+
+    public Target(TargetMediator mediator) {
+        this.mediator = mediator;
     }
 
     @Override
-    public void setElementScoreValue(Integer elementScoreValue) {
-
+    public void hit(Command command) {
+        command.execute();
     }
 
     @Override
     public int getElementScore() {
-        return 0;
+        return this.elementScore;
     }
 
     @Override
     public void setElementHitCount(int elementHitCount) {
-
+        this.hitCount = elementHitCount;
     }
 
     @Override
     public int getElementHitCount() {
-        return 0;
+        return this.hitCount;
     }
 
     @Override
-    public void setElementStatus() {
+    public void setElementStatus(Boolean isHit) {
+        this.isHit = isHit;
+    }
+
+    @Override
+    public boolean getElementStatus() {
+        return this.isHit;
+    }
+
+    @Override
+    public void acceptResetVisitor() {
 
     }
 
     @Override
-    public void getElementStatus() {
-
-    }
-
-    @Override
-    public int acceptResetVisitor() {
-        return 0;
-    }
-
-    @Override
-    public int acceptScoreVisitor() {
-        return 0;
+    public void acceptScoreVisitor() {
     }
 }
