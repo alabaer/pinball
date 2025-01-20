@@ -57,7 +57,7 @@ public class Flipper {
         return this.state;
     }
 
-    public void intro() {
+    public void intro() throws InterruptedException {
         this.setState(this.state);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Press 1: Enter Coin \n Press 2:Play \n Press 3: Exit \n Choice: " + this.state);
@@ -74,7 +74,7 @@ public class Flipper {
         intro();
     }
 
-    public void chooseFont() {
+    public void chooseFont() throws InterruptedException {
         OptionA optionA = new OptionA();
         OptionB optionB = new OptionB();
         Scanner scanner = new Scanner(System.in);

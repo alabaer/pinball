@@ -1,5 +1,7 @@
 package State;
 
+import AbstractFactory.DisplayText;
+
 public class Playing extends State {
     private final Flipper flipper;
 
@@ -9,6 +11,8 @@ public class Playing extends State {
 
     @Override
     public void insertCoin() {
+        DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
+        displayText.create();
         flipper.setCredit(flipper.getCredit() + 1);
         System.out.println("Credits: " + flipper.getCredit());
     }
@@ -19,7 +23,18 @@ public class Playing extends State {
         System.out.println("David & Magdalena");
     }
 
-    public void playBall(){
+    public void playBall() {
+
+    }
+
+    public void scenario1() {
+
+    }
+
+    public void scenario2() {
+
+    }
+    public void scenario3() {
 
     }
 

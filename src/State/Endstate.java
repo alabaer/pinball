@@ -1,5 +1,7 @@
 package State;
 
+import AbstractFactory.DisplayText;
+
 public class Endstate extends State {
     private Flipper flipper;
 
@@ -9,6 +11,8 @@ public class Endstate extends State {
 
     @Override
     public void insertCoin() {
+        DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
+        displayText.create();
         flipper.setCredit(flipper.getCredit()+1);
         flipper.setState(new Ready(flipper));
     }
