@@ -16,7 +16,6 @@ public class NoCredit extends State {
 
     @Override
     public void pressStart() {
-        //Placeholder für Abstract Factory
         System.out.println("No credit entered");
 
     }
