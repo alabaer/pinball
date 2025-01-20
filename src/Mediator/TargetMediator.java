@@ -23,12 +23,12 @@ public class TargetMediator implements Mediator {
                     target.setElementStatus(true);
                 }
             }
-            elements.get(2).setElementStatus(true);
+            elements.get(3).setElementStatus(true);
         }
     }
 
     private boolean allTargetsHit() {
-        return !elements.get(0).getElementStatus() && !elements.get(1).getElementStatus();
+        return !elements.get(0).getElementStatus() && !elements.get(1).getElementStatus() &&!elements.get(2).getElementStatus();
     }
 }
 

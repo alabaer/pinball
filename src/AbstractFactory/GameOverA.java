@@ -1,6 +1,6 @@
 package AbstractFactory;
 
-public class GameOverA implements CreateText{
+public class GameOverA implements DisplayText {
     @Override
     public void create() {
         String text = """

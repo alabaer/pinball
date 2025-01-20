@@ -2,5 +2,5 @@ package State;
 
 public abstract class State {
     public abstract void insertCoin();
-    public abstract void pressStart();
+    public abstract void pressStart() throws InterruptedException;
 }

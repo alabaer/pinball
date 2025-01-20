@@ -58,6 +58,7 @@ public class FlipperElementCompositum implements Element {
 
     @Override
     public boolean getElementStatus() {
+        //nutzlos
         return false;
     }
 

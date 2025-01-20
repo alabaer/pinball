@@ -9,8 +9,8 @@ public class Playing extends State {
 
     @Override
     public void insertCoin() {
-        //Placeholder
-        System.out.println("You are already Playing");
+        flipper.setCredit(flipper.getCredit() + 1);
+        System.out.println("Credits: " + flipper.getCredit());
     }
 
     @Override
@@ -19,9 +19,13 @@ public class Playing extends State {
         System.out.println("David & Magdalena");
     }
 
+    public void playBall(){
+
+    }
+
     //Placeholder Playing Logik
 
-    public void end(){
+    public void end() {
         flipper.setState(new Endstate(flipper));
     }
 }

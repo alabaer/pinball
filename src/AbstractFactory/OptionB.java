@@ -1,6 +1,6 @@
 package AbstractFactory;
 
-public class OptionB implements CreateText {
+public class OptionB implements DisplayText {
     @Override
     public void create() {
         String text = """

@@ -1,6 +1,6 @@
 package AbstractFactory;
 
-public class Welcome implements CreateText {
+public class Welcome implements DisplayText {
     @Override
     public void create() {
         String text = """

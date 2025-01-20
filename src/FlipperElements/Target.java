@@ -12,7 +12,7 @@ public class Target implements Element {
     private TargetMediator mediator;
 
     public Target(TargetMediator mediator) {
-        this.mediator = mediator;
+        this.mediator = mediator;;
     }
 
     @Override

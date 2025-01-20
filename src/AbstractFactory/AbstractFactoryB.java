@@ -1,13 +1,13 @@
 package AbstractFactory;
 
-public class DisplayTextA implements DisplayText {
+public class AbstractFactoryB implements AbstractFactory {
     @Override
     public Object displayText(String message) {
         return switch (message.toLowerCase()) {
-            case "coindrop" -> new CoindropA();
-            case "gameover" -> new GameOverA();
-            case "loseball" -> new LoseBallA();
-            case "nocredit" -> new NoCreditStateA();
+            case "coindrop" -> new CoindropB();
+            case "gameover" -> new GameOverB();
+            case "loseball" -> new LoseBallB();
+            case "nocredit" -> new NoCreditStateB();
             default -> {
                 System.out.println("Typo");
                 yield null;

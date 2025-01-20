@@ -1,8 +1,5 @@
 import AbstractFactory.*;
 import State.Flipper;
-import State.NoCredit;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

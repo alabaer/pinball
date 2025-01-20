@@ -9,6 +9,9 @@ public class Bumper implements Element {
     public int hitCount = 0;
     private boolean isActive = true;
 
+    public Bumper() {
+    }
+
     @Override
     public void hit(Command command) {
         command.execute();

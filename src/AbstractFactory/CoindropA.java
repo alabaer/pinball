@@ -1,6 +1,6 @@
 package AbstractFactory;
 
-public class CoindropA implements CreateText {
+public class CoindropA implements DisplayText {
     @Override
     public void create() {
         String text = """

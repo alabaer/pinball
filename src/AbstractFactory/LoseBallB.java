@@ -1,6 +1,6 @@
 package AbstractFactory;
 
-public class LoseBallB implements CreateText {
+public class LoseBallB implements DisplayText {
     @Override
     public void create() {
         String text = """

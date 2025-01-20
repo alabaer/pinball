@@ -1,6 +1,6 @@
 package AbstractFactory;
 
-public class NoCreditStateA implements CreateText {
+public class NoCreditStateA implements DisplayText {
     @Override
     public void create() {
         String text = """
