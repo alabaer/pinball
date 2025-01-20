@@ -1,3 +1,4 @@
+import AbstractFactory.Welcome;
 import Adapter.Flashinglights;
 import Adapter.FlashinglightsCommandAdapter;
 import Command.HitCommand;
@@ -11,7 +12,7 @@ import Mediator.*;
 public class Main {
     public static void main(String[] args) {
 
-        TargetMediator mediator = new TargetMediator();
+        /*TargetMediator mediator = new TargetMediator();
         Target a = new Target(mediator);
         Target b = new Target(mediator);
         Ramp c = new Ramp(mediator);
@@ -45,6 +46,8 @@ public class Main {
         System.out.println(a.getElementStatus());
         b.hit(commandsb);
         c.hit(hitc);
-        System.out.println(c.getElementStatus());
+        System.out.println(c.getElementStatus());*/
+        Welcome welcome = new Welcome();
+        welcome.create();
     }
 }
