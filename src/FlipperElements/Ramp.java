@@ -6,7 +6,7 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Ramp implements Element {
-    private int elementScore = 250;
+    private final int elementScore = 250;
     public int hitCount = 0;
     private Mediator mediator;
     private boolean isActive = false;
@@ -18,11 +18,6 @@ public class Ramp implements Element {
     @Override
     public void hit(Command command) {
         command.execute();
-    }
-
-    @Override
-    public int getElementScore() {
-        return this.elementScore;
     }
 
     @Override
@@ -46,12 +41,17 @@ public class Ramp implements Element {
     }
 
     @Override
+    public int getScore() {
+        return this.elementScore*this.hitCount;
+    }
+
+    @Override
     public void acceptResetVisitor(Resetvisitor resetvisitor) {
         resetvisitor.visit(this);
     }
 
     @Override
-    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
-        pointsvisitor.visit(this);
+    public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+       return pointsvisitor.visit(this);
     }
 }

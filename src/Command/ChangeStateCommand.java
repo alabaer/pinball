@@ -12,6 +12,6 @@ public class ChangeStateCommand implements Command {
 
     @Override
     public void execute() {
-        element.setElementStatus(true);
+        element.setElementStatus(false);
     }
 }

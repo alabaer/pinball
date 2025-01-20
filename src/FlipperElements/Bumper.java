@@ -5,9 +5,9 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Bumper implements Element {
-    private int elementScore = 100;
+    private final int elementScore = 100;
     public int hitCount = 0;
-    private boolean isActive = false;
+    private boolean isActive = true;
 
     @Override
     public void hit(Command command) {
@@ -15,13 +15,8 @@ public class Bumper implements Element {
     }
 
     @Override
-    public int getElementScore() {
-        return this.elementScore;
-    }
-
-    @Override
     public void setElementHitCount(int elementHitCount) {
-        this.elementScore = elementHitCount;
+        this.hitCount = elementHitCount;
     }
 
     @Override
@@ -40,12 +35,17 @@ public class Bumper implements Element {
     }
 
     @Override
+    public int getScore() {
+        return this.elementScore*this.hitCount;
+    }
+
+    @Override
     public void acceptResetVisitor(Resetvisitor resetvisitor) {
         resetvisitor.visit(this);
     }
 
     @Override
-    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
-        pointsvisitor.visit(this);
+    public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+        return pointsvisitor.visit(this);
     }
 }

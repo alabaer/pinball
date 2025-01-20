@@ -5,7 +5,7 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Slingshot implements Element {
-    private int elementScore = 50;
+    private final int elementScore = 50;
     public int hitCount = 0;
     private boolean isActive = true;
 
@@ -15,18 +15,13 @@ public class Slingshot implements Element {
     }
 
     @Override
-    public int getElementScore() {
-        return this.elementScore;
+    public int getElementHitCount() {
+        return this.hitCount;
     }
 
     @Override
     public void setElementHitCount(int elementHitCount) {
         this.hitCount = elementHitCount;
-    }
-
-    @Override
-    public int getElementHitCount() {
-        return this.hitCount;
     }
 
     @Override
@@ -40,12 +35,17 @@ public class Slingshot implements Element {
     }
 
     @Override
+    public int getScore() {
+        return this.elementScore*this.hitCount;
+    }
+
+    @Override
     public void acceptResetVisitor(Resetvisitor resetvisitor) {
         resetvisitor.visit(this);
     }
 
     @Override
-    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
-        pointsvisitor.visit(this);
+    public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+        return pointsvisitor.visit(this);
     }
 }

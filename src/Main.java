@@ -1,53 +1,48 @@
-import AbstractFactory.Welcome;
-import Adapter.Flashinglights;
-import Adapter.FlashinglightsCommandAdapter;
 import Command.HitCommand;
 import Command.*;
-import Compositum.CommandCompositum;
 import Compositum.FlipperElementCompositum;
+import FlipperElements.Bumper;
+import FlipperElements.Element;
 import FlipperElements.Ramp;
 import FlipperElements.Target;
 import Mediator.*;
+import Visitor.Pointsvisitor;
+
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-
-        /*TargetMediator mediator = new TargetMediator();
+        int sum = 0;
+        TargetMediator mediator = new TargetMediator();
         Target a = new Target(mediator);
         Target b = new Target(mediator);
         Ramp c = new Ramp(mediator);
+        Bumper bumper = new Bumper();
+        Pointsvisitor visitor = new Pointsvisitor();
         FlipperElementCompositum compositum = new FlipperElementCompositum(a, b, c);
+        ArrayList<Element> liste = new ArrayList<Element>();
+        Command hitbumer = new HitCommand(bumper);
         Command hita = new HitCommand(a);
         Command hitb = new HitCommand(b);
         Command hitc = new HitCommand(c);
-        Command changeStateb = new ChangeStateCommand(b);
-        Command changeStatea = new ChangeStateCommand(a);
-        CommandCompositum commandsa = new CommandCompositum();
-        CommandCompositum commandsb = new CommandCompositum();
-        Flashinglights flash = new Flashinglights();
-        Command flashing = new FlashinglightsCommandAdapter(flash);
+        Command ahit = new ChangeStateCommand(a);
+        Command bhit = new ChangeStateCommand(b);
         mediator.addTargets(compositum.getTargets());
-        commandsa.addCommand(hita);
-        commandsa.addCommand(changeStatea);
-        commandsb.addCommand(changeStateb);
-        commandsb.addCommand(hitb);
-        commandsb.addCommand(flashing);
+        a.hit(hita);
+        b.hit(hitb);
+        a.hit(ahit);
+        b.hit(bhit);
+        bumper.hit(hitbumer);
+        liste.add(compositum);
+        liste.add(bumper);
+        System.out.println(a.getElementStatus());
         System.out.println(b.getElementStatus());
-        b.hit(commandsb);
         c.hit(hitc);
+        for (Element e : liste) {
+            sum += e.acceptScoreVisitor(visitor);
+        }
+        System.out.println(a.getElementStatus());
         System.out.println(b.getElementStatus());
-        b.hit(commandsb);
-        System.out.println(a.getElementStatus());
-        a.hit(commandsa);
-        System.out.println(a.getElementStatus());
-
-        mediator.mediate(compositum);
-        System.out.println(b.getElementStatus());
-        System.out.println(a.getElementStatus());
-        b.hit(commandsb);
-        c.hit(hitc);
-        System.out.println(c.getElementStatus());*/
-        Welcome welcome = new Welcome();
-        welcome.create();
+        System.out.println(sum);
     }
 }

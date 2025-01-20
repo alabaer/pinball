@@ -8,16 +8,16 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FlipperElementCompositum implements Element {
     private Target target1;
     private Target target2;
     private Ramp ramp;
-    private List<Element> elements;
+    private ArrayList<Element> elements;
+    private boolean isActive = true;
 
     public FlipperElementCompositum(Target target1, Target target2, Ramp ramp) {
-        elements = new ArrayList<Element>();
+        elements = new ArrayList<>();
         this.target1 = target1;
         this.target2 = target2;
         elements.add(target1);
@@ -26,7 +26,11 @@ public class FlipperElementCompositum implements Element {
     }
 
     public ArrayList<Element> getTargets() {
-        return (ArrayList<Element>) this.elements;
+        return this.elements;
+    }
+
+    public void add (Element element) {
+        elements.add(element);
     }
 
     @Override
@@ -35,18 +39,13 @@ public class FlipperElementCompositum implements Element {
     }
 
     @Override
-    public int getElementScore() {
+    public int getElementHitCount() {
         return 0;
     }
 
     @Override
     public void setElementHitCount(int elementHitCount) {
 
-    }
-
-    @Override
-    public int getElementHitCount() {
-        return 0;
     }
 
     @Override
@@ -60,12 +59,20 @@ public class FlipperElementCompositum implements Element {
     }
 
     @Override
-    public void acceptResetVisitor(Resetvisitor resetvisitor) {
-        resetvisitor.visit(this);
+    public int getScore() {
+        int score = 0;
+        for (Element element : elements) {
+            score += element.getScore();
+        }
+        return score;
     }
 
     @Override
-    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+    public void acceptResetVisitor(Resetvisitor resetvisitor) {
+    }
 
+    @Override
+    public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+return pointsvisitor.visit(this);
     }
 }

@@ -4,10 +4,10 @@ public class Flipper {
     private static Flipper instance;
     private State state;
     private int credit;
-    private int balls = 1;
+    private int balls = 3;
 
     public int getCredit() {
-        return credit;
+        return this.credit;
     }
 
     public void setCredit(int credit) {
@@ -15,7 +15,7 @@ public class Flipper {
     }
 
     public int getBalls() {
-        return balls * 3;
+        return this.balls;
     }
 
     public void setBalls(int balls) {

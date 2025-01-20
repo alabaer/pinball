@@ -9,7 +9,7 @@ public class NoCredit extends State {
 
     @Override
     public void insertCoin() {
-        flipper.setCredit(1);
+        flipper.setCredit(flipper.getCredit()+1);
         flipper.setState(new Ready(flipper));
 
     }

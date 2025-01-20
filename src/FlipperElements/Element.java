@@ -7,17 +7,18 @@ import Visitor.Resetvisitor;
 public interface Element {
     void hit(Command command);
 
-    int getElementScore();
-
-    void setElementHitCount(int elementHitCount);
 
     int getElementHitCount();
+
+    void setElementHitCount(int elementHitCount);
 
     void setElementStatus(Boolean isActive);
 
     boolean getElementStatus();
 
+    int getScore();
+
     void acceptResetVisitor(Resetvisitor resetvisitor);
 
-    void acceptScoreVisitor(Pointsvisitor pointsvisitor);
+    int acceptScoreVisitor(Pointsvisitor pointsvisitor);
 }

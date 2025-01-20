@@ -18,11 +18,8 @@ public class Target implements Element {
     @Override
     public void hit(Command command) {
         command.execute();
-    }
+        mediator.mediate(this);
 
-    @Override
-    public int getElementScore() {
-        return this.elementScore;
     }
 
     @Override
@@ -46,13 +43,18 @@ public class Target implements Element {
     }
 
     @Override
+    public int getScore() {
+        return this.elementScore * this.hitCount;
+    }
+
+    @Override
     public void acceptResetVisitor(Resetvisitor visitor) {
         visitor.visit(this);
     }
 
     @Override
-    public void acceptScoreVisitor(Pointsvisitor pointsvisitor) {
-        pointsvisitor.visit(this);
+    public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
+       return pointsvisitor.visit(this);
     }
 
 }

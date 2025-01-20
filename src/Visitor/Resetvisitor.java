@@ -31,7 +31,4 @@ public class Resetvisitor {
         slingshot.setElementHitCount(0);
         slingshot.setElementStatus(true);
     }
-    public void visit (FlipperElementCompositum flipperElementCompositum){
-        flipperElementCompositum.setElementHitCount(0);
-    }
 }
