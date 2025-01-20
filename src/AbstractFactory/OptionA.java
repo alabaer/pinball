@@ -13,6 +13,6 @@ public class OptionA implements CreateText {
             "  \\ |  | |  | |  .___.'   |  |  ,|  |_.'  \\ |  | |  ||  |\\    |          |  .-.  | \n" +
             "   `'  '-'  ' |  |        |  | (_|  |      `'  '-'  '|  | \\   |          |  | |  | \n" +
             "     `-----'  `--'        `--'   `--'        `-----' `--'  `--'          `--' `--' \n";
-    System.out.println(text + "1: Insert Coin \n 2: Press start");
+    System.out.println(text);
     }
 }

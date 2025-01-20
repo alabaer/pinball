@@ -15,6 +15,6 @@ public class OptionB implements CreateText {
                    `-----' `--'        `--'   `--'      `-----' `--'  `--'     `------' \s
                 
                 """;
-        System.out.println(text + "1: Insert Coin \n 2: Press start");
+        System.out.println(text);
     }
 }
