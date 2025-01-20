@@ -8,7 +8,7 @@ import Visitor.Resetvisitor;
 public class Target implements Element {
     private int elementScore = 50;
     public int hitCount = 0;
-    private boolean isHit = false;
+    private boolean isActive = true;
     private TargetMediator mediator;
 
     public Target(TargetMediator mediator) {
@@ -36,13 +36,13 @@ public class Target implements Element {
     }
 
     @Override
-    public void setElementStatus(Boolean isHit) {
-        this.isHit = isHit;
+    public void setElementStatus(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
     public boolean getElementStatus() {
-        return this.isHit;
+        return this.isActive;
     }
 
     @Override

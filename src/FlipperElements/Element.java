@@ -1,4 +1,5 @@
 package FlipperElements;
+
 import Command.*;
 import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
@@ -12,7 +13,7 @@ public interface Element {
 
     int getElementHitCount();
 
-    void setElementStatus(Boolean isHit);
+    void setElementStatus(Boolean isActive);
 
     boolean getElementStatus();
 

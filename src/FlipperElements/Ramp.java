@@ -1,13 +1,19 @@
 package FlipperElements;
 
 import Command.Command;
+import Mediator.*;
 import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Ramp implements Element {
-    private int elementScore = 50;
+    private int elementScore = 250;
     public int hitCount = 0;
-    private boolean isHit = false;
+    private Mediator mediator;
+    private boolean isActive = false;
+
+    public Ramp(TargetMediator mediator) {
+        this.mediator = mediator;
+    }
 
     @Override
     public void hit(Command command) {
@@ -30,13 +36,13 @@ public class Ramp implements Element {
     }
 
     @Override
-    public void setElementStatus(Boolean isHit) {
-        this.isHit = isHit;
+    public void setElementStatus(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
     public boolean getElementStatus() {
-        return this.isHit;
+        return this.isActive;
     }
 
     @Override

@@ -7,7 +7,7 @@ import Visitor.Resetvisitor;
 public class Bumper implements Element {
     private int elementScore = 100;
     public int hitCount = 0;
-    private boolean isHit = false;
+    private boolean isActive = false;
 
     @Override
     public void hit(Command command) {
@@ -30,13 +30,13 @@ public class Bumper implements Element {
     }
 
     @Override
-    public void setElementStatus(Boolean isHit) {
-        this.isHit = isHit;
+    public void setElementStatus(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
     public boolean getElementStatus() {
-        return this.isHit;
+        return this.isActive;
     }
 
     @Override

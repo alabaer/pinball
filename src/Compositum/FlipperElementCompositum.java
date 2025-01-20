@@ -2,6 +2,7 @@ package Compositum;
 
 import Command.Command;
 import FlipperElements.Element;
+import FlipperElements.Ramp;
 import FlipperElements.Target;
 import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
@@ -12,18 +13,20 @@ import java.util.List;
 public class FlipperElementCompositum implements Element {
     private Target target1;
     private Target target2;
-    private List<Target> targets;
+    private Ramp ramp;
+    private List<Element> elements;
 
-    public FlipperElementCompositum(Target target1, Target target2) {
-        targets = new ArrayList<Target>();
+    public FlipperElementCompositum(Target target1, Target target2, Ramp ramp) {
+        elements = new ArrayList<Element>();
         this.target1 = target1;
         this.target2 = target2;
-        targets.add(target1);
-        targets.add(target2);
+        elements.add(target1);
+        elements.add(target2);
+        elements.add(ramp);
     }
 
-    public ArrayList<Target> getTargets() {
-        return (ArrayList<Target>) this.targets;
+    public ArrayList<Element> getTargets() {
+        return (ArrayList<Element>) this.elements;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class FlipperElementCompositum implements Element {
     }
 
     @Override
-    public void setElementStatus(Boolean isHit) {
+    public void setElementStatus(Boolean isActive) {
 
     }
 

@@ -7,7 +7,7 @@ import Visitor.Resetvisitor;
 public class Slingshot implements Element {
     private int elementScore = 50;
     public int hitCount = 0;
-    private boolean isHit = false;
+    private boolean isActive = true;
 
     @Override
     public void hit(Command command) {
@@ -30,13 +30,13 @@ public class Slingshot implements Element {
     }
 
     @Override
-    public void setElementStatus(Boolean isHit) {
-        this.isHit = isHit;
+    public void setElementStatus(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
     public boolean getElementStatus() {
-        return this.isHit;
+        return this.isActive;
     }
 
     @Override

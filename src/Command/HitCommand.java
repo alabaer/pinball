@@ -11,9 +11,11 @@ public class HitCommand implements Command {
 
     @Override
     public void execute() {
-        if(element.getElementStatus()) {
+        if (element.getElementStatus()) {
             element.setElementHitCount(element.getElementHitCount() + 1);
             System.out.println(element.getElementHitCount());
+        } else {
+            System.out.println("Ziel nicht aktiv");
         }
     }
 }
