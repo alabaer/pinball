@@ -38,7 +38,7 @@ public class Resetvisitor implements Visitor {
         bumper.setElementHitCount(0);
         bumper.setElementStatus(true);
         //2 Bumper
-        return (int) 0.5;
+        return 2;
     }
     public int visit (Slingshot slingshot){
         slingshot.setElementHitCount(0);

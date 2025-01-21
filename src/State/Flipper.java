@@ -29,6 +29,15 @@ public class Flipper {
     private int balls = 3;
     private final TargetMediator mediator = new TargetMediator();
     private final Scoreboard scoreboard = new Scoreboard();
+    private boolean isRunning = true;
+
+    public boolean getIsRunning() {
+        return isRunning;
+    }
+
+    public void setIsRunning(boolean running) {
+        isRunning = running;
+    }
 
     public int getCredit() {
         return this.credit;

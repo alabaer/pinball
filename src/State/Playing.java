@@ -30,22 +30,21 @@ public class Playing extends State {
     }
 
     public void playBall() throws InterruptedException {
-        while (flipper.getBalls() > 0) {
+        while (flipper.getIsRunning()) {
             flipper.getFlipperElementCompositum().hit();
         }
+        endOfRound();
     }
 
     public void endOfRound() throws InterruptedException {
         int sum = 0;
-        int checksum = 0;
         Pointsvisitor visitor = new Pointsvisitor();
         Resetvisitor reset = new Resetvisitor();
         ArrayList<Element> flipperElements = flipper.getFlipperElementCompositum().getElements();
         for (Element element : flipperElements) {
             sum += element.acceptScoreVisitor(visitor);
-            checksum += element.acceptResetVisitor(reset);
+            element.acceptResetVisitor(reset);
         }
-        System.out.println( sum+ "Elements reset.");
         flipper.getScoreboard().addScore(sum);
         flipper.getScoreboard().printroundScore();
         flipper.getScoreboard().setRoundScore(0);
@@ -67,7 +66,7 @@ public class Playing extends State {
 
     public void options() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        boolean waitingToContinue = true; // Loop control variable
+        boolean waitingToContinue = true;
 
         while (waitingToContinue) {
             System.out.println("Press 1 to continue \nPress 2 to press Start \nPress 3 to insert Coin");
@@ -76,9 +75,11 @@ public class Playing extends State {
             switch (option) {
                 case 1:
                     System.out.println("Next ball in 3 Seconds");
-                    Thread.sleep(3000); // Simulate delay
-                    playBall();
+                    Thread.sleep(3000);
                     waitingToContinue = false;
+                    flipper.setIsRunning(true);
+                    playBall();
+
                     break;
 
                 case 2:
@@ -86,7 +87,8 @@ public class Playing extends State {
                     break;
 
                 case 3:
-                    insertCoin();                    break;
+                    insertCoin();
+                    break;
 
                 default:
                     System.out.println("Invalid option. Please try again.");
