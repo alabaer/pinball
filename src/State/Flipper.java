@@ -143,13 +143,9 @@ public class Flipper {
         elements.add(hole);
         Slingshot slingshot = new Slingshot(createCommand());
         elements.add(slingshot);
-        FlipperElementCompositum compositum = createCompositum(target1,target2,target3, ramp);
+        FlipperElementCompositum compositum = new FlipperElementCompositum(target1, target2, target3, ramp);
         mediator.addTargets(compositum.getElements());
         elements.add(compositum);
-    }
-
-    private FlipperElementCompositum createCompositum(Target target1, Target target2, Target target3, Ramp ramp3) {
-        return new FlipperElementCompositum(target1, target2, target3, ramp3);
     }
 
     public AbstractFactory getDisplayText() {

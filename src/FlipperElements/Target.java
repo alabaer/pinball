@@ -20,9 +20,9 @@ public class Target implements Element {
     @Override
     public void hit() throws InterruptedException {
         System.out.println("Target hit");
-        hitCount++;
-        isActive = false;
-        mediator.mediate(this);
+        this.hitCount++;
+        this.isActive = false;
+        this.mediator.mediate(this);
         command.execute();
 
     }
