@@ -1,11 +1,17 @@
 package State;
 
 import AbstractFactory.*;
+import Adapter.Flashinglights;
+import Adapter.FlashinglightsCommandAdapter;
+import Compositum.CommandCompositum;
 import Compositum.FlipperElementCompositum;
 import FlipperElements.*;
 import Mediator.*;
+import Command.*;
+
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Flipper {
@@ -17,6 +23,7 @@ public class Flipper {
     private ArrayList<Element> elements;
     private int balls = 3;
     private final TargetMediator mediator = new TargetMediator();
+    private final Scoreboard scoreboard = new Scoreboard();
 
     public int getCredit() {
         return this.credit;
@@ -57,7 +64,7 @@ public class Flipper {
         return this.state;
     }
 
-    public void intro() throws InterruptedException {
+    public void text() throws InterruptedException {
         this.setState(this.state);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Press 1: Enter Coin \n Press 2:Play \n Press 3: Exit \n Choice: " + this.state);
@@ -71,7 +78,7 @@ public class Flipper {
             System.out.println("Exiting the program. Goodbye!");
             System.exit(0);
         } else System.out.println("Invalid input! Please try Again");
-        intro();
+        text();
     }
 
     public void chooseFont() throws InterruptedException {
@@ -87,12 +94,12 @@ public class Flipper {
             case 1:
                 AbstractFactoryA textA = new AbstractFactoryA();
                 this.factory = textA;
-                intro();
+                text();
                 break;
             case 2:
                 AbstractFactoryB textB = new AbstractFactoryB();
                 this.factory = textB;
-                intro();
+                text();
                 break;
             default:
                 System.out.println("Invalid input. Please try again.");
@@ -101,22 +108,41 @@ public class Flipper {
         }
     }
 
-    public void createFlipper() {
-        ArrayList<Element> flipperElements = new ArrayList<>();
-        Target target1 = new Target(this.mediator);
-        Target target2 = new Target(this.mediator);
-        Target target3 = new Target(this.mediator);
-        Ramp ramp = new Ramp(this.mediator);
-        Bumper bumper1 = new Bumper();
-        flipperElements.add(bumper1);
-        Bumper bumper2 = new Bumper();
-        flipperElements.add(bumper2);
-        Hole hole = new Hole();
-        flipperElements.add(hole);
-        Slingshot slingshot = new Slingshot();
-        flipperElements.add(slingshot);
-        flipperElements.add(createCompositum(target1, target2, target3, ramp));
+    public Command createCommand() {
+        Random random = new Random();
+        LoseBallCommand loseBallCommand = new LoseBallCommand(this);
+        Minigame minigame = new Minigame(scoreboard);
+        LuckyShot luckyShot = new LuckyShot(scoreboard);
+        Flashinglights flash = new Flashinglights();
+        ArrayList<Command> commands = new ArrayList<>();
+        FlashinglightsCommandAdapter flashinglightsCommandAdapter = new FlashinglightsCommandAdapter(flash);
+        CommandCompositum commandCompositum = new CommandCompositum();
+        commandCompositum.addCommand(luckyShot);
+        commandCompositum.addCommand(flashinglightsCommandAdapter);
+        commands.add(loseBallCommand);
+        commands.add(commandCompositum);
+        commands.add(minigame);
+        int randomNumber = random.nextInt(3);
+        return commands.get(randomNumber);
+    }
 
+    public void createFlipper() {
+        elements = new ArrayList<>();
+        Target target1 = new Target(createCommand(),this.mediator);
+        Target target2 = new Target(createCommand(),this.mediator);
+        Target target3 = new Target(createCommand(),this.mediator);
+        Ramp ramp = new Ramp(createCommand(),this.mediator);
+        Bumper bumper1 = new Bumper(createCommand());
+        elements.add(bumper1);
+        Bumper bumper2 = new Bumper(createCommand());
+        elements.add(bumper2);
+        Hole hole = new Hole(createCommand());
+        elements.add(hole);
+        Slingshot slingshot = new Slingshot(createCommand());
+        elements.add(slingshot);
+        FlipperElementCompositum compositum = createCompositum(target1,target2,target3, ramp);
+        mediator.addTargets(compositum.getElements());
+        elements.add(compositum);
     }
 
     private FlipperElementCompositum createCompositum(Target target1, Target target2, Target target3, Ramp ramp3) {

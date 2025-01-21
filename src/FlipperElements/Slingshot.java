@@ -5,12 +5,18 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Slingshot implements Element {
+    private final Command command;
     private final int elementScore = 50;
     public int hitCount = 0;
     private boolean isActive = true;
 
+    public Slingshot(Command command) {
+        this.command = command;
+    }
+
     @Override
-    public void hit(Command command) {
+    public void hit() throws InterruptedException {
+        hitCount++;
         command.execute();
     }
 

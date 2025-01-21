@@ -6,19 +6,23 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Target implements Element {
+    private final Command command;
     private int elementScore = 50;
     public int hitCount = 0;
     private boolean isActive = true;
     private TargetMediator mediator;
 
-    public Target(TargetMediator mediator) {
+    public Target(Command command, TargetMediator mediator) {
+        this.command = command;
         this.mediator = mediator;;
     }
 
     @Override
-    public void hit(Command command) {
-        command.execute();
+    public void hit() throws InterruptedException {
+        hitCount++;
+        isActive = false;
         mediator.mediate(this);
+        command.execute();
 
     }
 

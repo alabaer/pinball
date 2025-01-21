@@ -6,14 +6,17 @@ import Visitor.Resetvisitor;
 
 public class Bumper implements Element {
     private final int elementScore = 100;
+    private final Command command;
     public int hitCount = 0;
     private boolean isActive = true;
 
-    public Bumper() {
+    public Bumper(Command command) {
+        this.command = command;
     }
 
     @Override
-    public void hit(Command command) {
+    public void hit() throws InterruptedException {
+        hitCount++;
         command.execute();
     }
 

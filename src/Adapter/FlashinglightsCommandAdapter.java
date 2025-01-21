@@ -10,7 +10,8 @@ public class FlashinglightsCommandAdapter implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
         flashinglights.lightsFlashing();
+        Thread.sleep(1000);
     }
 }

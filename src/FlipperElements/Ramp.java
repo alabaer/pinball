@@ -6,17 +6,20 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Ramp implements Element {
+    private final Command command;
     private final int elementScore = 250;
     public int hitCount = 0;
     private Mediator mediator;
     private boolean isActive = false;
 
-    public Ramp(TargetMediator mediator) {
+    public Ramp(Command command, TargetMediator mediator) {
+        this.command = command;
         this.mediator = mediator;
     }
 
     @Override
-    public void hit(Command command) {
+    public void hit() throws InterruptedException {
+        hitCount++;
         command.execute();
     }
 

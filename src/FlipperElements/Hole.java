@@ -5,12 +5,18 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 public class Hole implements Element {
+    private final Command  command;
     private final int elementScore = 200;
     public int hitCount = 0;
     private boolean isActive = true;
 
+    public Hole(Command command) {
+        this.command = command;
+    }
+
     @Override
-    public void hit(Command command) {
+    public void hit() throws InterruptedException {
+        hitCount++;
         command.execute();
     }
 

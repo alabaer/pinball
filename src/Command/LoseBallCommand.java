@@ -10,7 +10,9 @@ public class LoseBallCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
+
         flipper.setBalls(flipper.getBalls() - 1);
+        Thread.sleep(1000);
     }
 }

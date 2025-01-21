@@ -6,7 +6,7 @@ import Visitor.Resetvisitor;
 
 public interface Element {
 
-    void hit(Command command);
+    void hit() throws InterruptedException;
 
     int getElementHitCount();
 

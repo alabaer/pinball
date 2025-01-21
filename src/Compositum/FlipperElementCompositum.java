@@ -27,12 +27,16 @@ public class FlipperElementCompositum implements Element {
         elements.add(ramp);
     }
 
+    public ArrayList<Element> getElements() {
+        return elements;
+    }
+
     public void add(Element element) {
         elements.add(element);
     }
 
     @Override
-    public void hit(Command command) {
+    public void hit() {
         //leer weil nutzlos
     }
 
