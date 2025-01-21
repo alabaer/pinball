@@ -8,6 +8,7 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class FlipperElementCompositum implements Element {
     private Target target1;
@@ -36,13 +37,15 @@ public class FlipperElementCompositum implements Element {
     }
 
     @Override
-    public void hit() {
-        //leer weil nutzlos
+    public void hit() throws InterruptedException {
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+        elements.get(randomNumber).hit();
     }
 
     @Override
     public int getElementHitCount() {
-        //0 weil nutzlos
         return 0;
     }
 

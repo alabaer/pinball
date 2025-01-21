@@ -16,6 +16,7 @@ public class Slingshot implements Element {
 
     @Override
     public void hit() throws InterruptedException {
+        System.out.println("Slingshot hit");
         hitCount++;
         command.execute();
     }

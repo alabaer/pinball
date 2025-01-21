@@ -16,6 +16,7 @@ public class Bumper implements Element {
 
     @Override
     public void hit() throws InterruptedException {
+        System.out.println("Bumper hit");
         hitCount++;
         command.execute();
     }

@@ -16,6 +16,7 @@ public class Hole implements Element {
 
     @Override
     public void hit() throws InterruptedException {
+        System.out.println("Hole hit");
         hitCount++;
         command.execute();
     }

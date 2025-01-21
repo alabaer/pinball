@@ -17,7 +17,7 @@ public class CommandCompositum implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
         for (Command command : commands) {
             command.execute();
         }

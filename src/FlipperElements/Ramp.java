@@ -19,6 +19,7 @@ public class Ramp implements Element {
 
     @Override
     public void hit() throws InterruptedException {
+        System.out.println("Ramp hit");
         hitCount++;
         command.execute();
     }

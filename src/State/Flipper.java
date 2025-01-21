@@ -37,6 +37,10 @@ public class Flipper {
         this.credit = credit;
     }
 
+    public Scoreboard getScoreboard() {
+        return scoreboard;
+    }
+
     public int getBalls() {
         return this.balls;
     }
