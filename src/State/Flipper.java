@@ -17,10 +17,15 @@ import java.util.Scanner;
 public class Flipper {
     private static Flipper instance;
     private State state;
+
+    public FlipperElementCompositum getFlipperElementCompositum() {
+        return flipperElementCompositum;
+    }
+
     private AbstractFactory<DisplayText> factory = null;
     private DisplayText displayText;
     private int credit;
-    private ArrayList<Element> elements;
+    private FlipperElementCompositum flipperElementCompositum;
     private int balls = 3;
     private final TargetMediator mediator = new TargetMediator();
     private final Scoreboard scoreboard = new Scoreboard();
@@ -80,7 +85,8 @@ public class Flipper {
         } else if (input == 3) {
             System.out.println("Exiting the program. Goodbye!");
             System.exit(0);
-        } else System.out.println("Invalid input! Please try Again");
+        } else
+            System.out.println("Invalid input! Please try Again");
         text();
     }
 
@@ -110,7 +116,8 @@ public class Flipper {
                 break;
         }
     }
-//refactoren wo es gut dazupasst
+
+    //refactoren wo es gut dazupasst
     public Command createCommand() {
         Random random = new Random();
         LoseBallCommand loseBallCommand = new LoseBallCommand(this);
@@ -128,31 +135,30 @@ public class Flipper {
         int randomNumber = random.nextInt(3);
         return commands.get(randomNumber);
     }
-//refactoren wo es gut dazu passt
+
+    //refactoren wo es gut dazu passt
     public void createFlipper() {
-        elements = new ArrayList<>();
-        Target target1 = new Target(createCommand(),this.mediator);
-        Target target2 = new Target(createCommand(),this.mediator);
-        Target target3 = new Target(createCommand(),this.mediator);
-        Ramp ramp = new Ramp(createCommand(),this.mediator);
+        Target target1 = new Target(createCommand(), this.mediator);
+        Target target2 = new Target(createCommand(), this.mediator);
+        Target target3 = new Target(createCommand(), this.mediator);
+        Ramp ramp = new Ramp(createCommand(), this.mediator);
         Bumper bumper1 = new Bumper(createCommand());
-        elements.add(bumper1);
         Bumper bumper2 = new Bumper(createCommand());
-        elements.add(bumper2);
         Hole hole = new Hole(createCommand());
-        elements.add(hole);
         Slingshot slingshot = new Slingshot(createCommand());
-        elements.add(slingshot);
-        FlipperElementCompositum compositum = new FlipperElementCompositum(target1, target2, target3, ramp);
-        mediator.addTargets(compositum.getElements());
-        elements.add(compositum);
+        this.flipperElementCompositum = new FlipperElementCompositum();
+        flipperElementCompositum.add(target1);
+        flipperElementCompositum.add(target2);
+        flipperElementCompositum.add(target3);
+        flipperElementCompositum.add(ramp);
+        flipperElementCompositum.add(bumper1);
+        flipperElementCompositum.add(bumper2);
+        flipperElementCompositum.add(hole);
+        flipperElementCompositum.add(slingshot);
+        mediator.element(flipperElementCompositum.getElements());
     }
 
-    public AbstractFactory getDisplayText() {
+    public AbstractFactory<DisplayText> getDisplayText() {
         return factory;
-    }
-
-    public ArrayList<Element> getElements() {
-        return elements;
     }
 }

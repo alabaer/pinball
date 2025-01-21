@@ -22,8 +22,9 @@ public class Ready extends State {
     public void pressStart() throws InterruptedException {
         flipper.setCredit(flipper.getCredit() - 1);
         System.out.println("Start Game");
-       Thread.sleep(1000);
-        flipper.setState(new Playing(flipper));
-        ((Playing) flipper.getState()).playBall();    }
-
+        Thread.sleep(1000);
+        Playing playing = new Playing(flipper);
+        flipper.setState(playing);
+        playing.playBall();
+    }
 }

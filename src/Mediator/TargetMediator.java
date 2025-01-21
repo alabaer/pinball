@@ -1,7 +1,9 @@
 package Mediator;
 
 import FlipperElements.Element;
+import FlipperElements.Ramp;
 import FlipperElements.Target;
+
 import java.util.ArrayList;
 
 public class TargetMediator implements Mediator {
@@ -10,7 +12,7 @@ public class TargetMediator implements Mediator {
     public TargetMediator() {
     }
 
-    public void addTargets(ArrayList<Element> elements) {
+    public void element(ArrayList<Element> elements) {
         this.elements = elements;
     }
 
@@ -18,17 +20,27 @@ public class TargetMediator implements Mediator {
     public void mediate(Element sender) {
         if (allTargetsHit()) {
             System.out.println("Es wurden alle Targets getroffen die Rampe fährt herunter und alle Targets sind wieder aktiv!");
-            for (Element target : elements) {
-                if (target instanceof Target) {
-                    target.setElementStatus(true);
+            for (Element element : elements) {
+                if (element instanceof Target) {
+                    element.setElementStatus(true);
                 }
             }
-            elements.get(3).setElementStatus(true);
+            for (Element element : elements) {
+                if (element instanceof Ramp) {
+                    element.setElementStatus(true);
+                }
+            }
         }
     }
 
     private boolean allTargetsHit() {
-        return !elements.get(0).getElementStatus() && !elements.get(1).getElementStatus() &&!elements.get(2).getElementStatus();
+        for (Element element : elements) {
+            if (element instanceof Target && element.getElementStatus()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
+
 

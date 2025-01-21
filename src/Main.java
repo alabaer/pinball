@@ -7,6 +7,7 @@ public class Main {
         welcome.create();
         Thread.sleep(3000);
         Flipper flipper = Flipper.getInstance();
+        flipper.createFlipper();
         flipper.chooseFont();
     }
 

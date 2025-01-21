@@ -17,8 +17,6 @@ public class NoCredit extends State {
         flipper.setCredit(flipper.getCredit() + 1);
         System.out.println("Credits: " + flipper.getCredit());
         flipper.setState(new Ready(flipper));
-
-
     }
 
     @Override

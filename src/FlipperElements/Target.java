@@ -19,12 +19,14 @@ public class Target implements Element {
 
     @Override
     public void hit() throws InterruptedException {
-        System.out.println("Target hit");
-        this.hitCount++;
-        this.isActive = false;
-        this.mediator.mediate(this);
-        command.execute();
-
+        if(this.isActive) {
+            System.out.println("Target hit");
+            this.hitCount++;
+            this.isActive = false;
+            this.mediator.mediate(this);
+            command.execute();
+        }
+        System.out.println("Target inactive");
     }
 
     @Override

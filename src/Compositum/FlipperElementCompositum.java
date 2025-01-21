@@ -1,6 +1,4 @@
 package Compositum;
-
-import Command.Command;
 import FlipperElements.Element;
 import FlipperElements.Ramp;
 import FlipperElements.Target;
@@ -16,16 +14,9 @@ public class FlipperElementCompositum implements Element {
     private Target target3;
     private Ramp ramp;
     private ArrayList<Element> elements;
-    private boolean isActive = true;
 
-    public FlipperElementCompositum(Target target1, Target target2, Target target3, Ramp ramp) {
+    public FlipperElementCompositum() {
         elements = new ArrayList<>();
-        this.target1 = target1;
-        this.target2 = target2;
-        this.target3 = target3;
-        elements.add(target1);
-        elements.add(target2);
-        elements.add(ramp);
     }
 
     public ArrayList<Element> getElements() {
@@ -38,9 +29,8 @@ public class FlipperElementCompositum implements Element {
 
     @Override
     public void hit() throws InterruptedException {
-
         Random random = new Random();
-        int randomNumber = random.nextInt(3);
+        int randomNumber = random.nextInt(elements.size());
         elements.get(randomNumber).hit();
     }
 

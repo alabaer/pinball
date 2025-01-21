@@ -11,14 +11,14 @@ public class Endstate extends State {
 
     @Override
     public void insertCoin() {
-        DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
-        displayText.create();
-        flipper.setCredit(flipper.getCredit()+1);
-        flipper.setState(new Ready(flipper));
+        System.out.println("Nothing happens");
     }
 
     @Override
     public void pressStart() {
-        System.out.println("Insert Coins");
+        if (flipper.getCredit() > 0) {
+            flipper.setState(new Ready(flipper));
+        }
+        flipper.setState(new NoCredit(flipper));
     }
 }
