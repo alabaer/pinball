@@ -1,8 +1,8 @@
 package AbstractFactory;
 
-public class AbstractFactoryB implements AbstractFactory {
+public class AbstractFactoryB implements AbstractFactory<DisplayText> {
     @Override
-    public Object displayText(String message) {
+    public DisplayText displayText(String message) {
         return switch (message.toLowerCase()) {
             case "coindrop" -> new CoindropB();
             case "gameover" -> new GameOverB();

@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class Flipper {
     private static Flipper instance;
     private State state;
-    private AbstractFactory factory = null;
+    private AbstractFactory<DisplayText> factory = null;
     private DisplayText displayText;
     private int credit;
     private ArrayList<Element> elements;
@@ -65,7 +65,6 @@ public class Flipper {
     }
 
     public void text() throws InterruptedException {
-        this.setState(this.state);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Press 1: Enter Coin \n Press 2:Play \n Press 3: Exit \n Choice: " + this.state);
         int input = scanner.nextInt();
@@ -107,7 +106,7 @@ public class Flipper {
                 break;
         }
     }
-
+//refactoren wo es gut dazupasst
     public Command createCommand() {
         Random random = new Random();
         LoseBallCommand loseBallCommand = new LoseBallCommand(this);
@@ -125,7 +124,7 @@ public class Flipper {
         int randomNumber = random.nextInt(3);
         return commands.get(randomNumber);
     }
-
+//refactoren wo es gut dazu passt
     public void createFlipper() {
         elements = new ArrayList<>();
         Target target1 = new Target(createCommand(),this.mediator);

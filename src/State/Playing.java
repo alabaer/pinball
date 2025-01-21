@@ -5,6 +5,7 @@ import AbstractFactory.DisplayText;
 public class Playing extends State {
     private final Flipper flipper;
 
+
     public Playing(Flipper flipper) {
         this.flipper = flipper;
     }
@@ -27,19 +28,9 @@ public class Playing extends State {
 
     }
 
-    public void scenario1() {
+    public void endOfRound(){
 
     }
-
-    public void scenario2() {
-
-    }
-    public void scenario3() {
-
-    }
-
-    //Placeholder Playing Logik
-
     public void end() {
         flipper.setState(new Endstate(flipper));
     }
