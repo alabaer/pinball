@@ -85,9 +85,10 @@ public class Flipper {
         } else if (input == 3) {
             System.out.println("Exiting the program. Goodbye!");
             System.exit(0);
-        } else
-            System.out.println("Invalid input! Please try Again");
-        text();
+        } else {
+            System.out.println("Invalid input");
+            text();
+        }
     }
 
     public void chooseFont() throws InterruptedException {

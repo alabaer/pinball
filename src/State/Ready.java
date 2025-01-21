@@ -11,11 +11,12 @@ public class Ready extends State {
     }
 
     @Override
-    public void insertCoin() {
+    public void insertCoin() throws InterruptedException {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
         displayText.create();
         flipper.setCredit(flipper.getCredit() + 1);
         System.out.println("Credits: " + flipper.getCredit());
+        flipper.text();
     }
 
     @Override

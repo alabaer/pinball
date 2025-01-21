@@ -69,10 +69,11 @@ public class FlipperElementCompositum implements Element {
     }
 
     @Override
-    public void acceptResetVisitor(Resetvisitor resetvisitor) {
+    public int acceptResetVisitor(Resetvisitor resetvisitor) {
         for (Element element : elements) {
             element.acceptResetVisitor(resetvisitor);
         }
+        return 0;
     }
 
     @Override

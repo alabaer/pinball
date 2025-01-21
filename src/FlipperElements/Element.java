@@ -18,7 +18,7 @@ public interface Element {
 
     int getScore();
 
-    void acceptResetVisitor(Resetvisitor resetvisitor);
+    int acceptResetVisitor(Resetvisitor resetvisitor);
 
     int acceptScoreVisitor(Pointsvisitor pointsvisitor);
 }

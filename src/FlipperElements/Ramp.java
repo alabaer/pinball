@@ -19,9 +19,12 @@ public class Ramp implements Element {
 
     @Override
     public void hit() throws InterruptedException {
-        System.out.println("Ramp hit");
-        hitCount++;
-        command.execute();
+        if (isActive) {
+            System.out.println("Ramp hit");
+            hitCount++;
+            command.execute();
+        }
+        System.out.println("Target not active");
     }
 
     @Override
@@ -46,16 +49,16 @@ public class Ramp implements Element {
 
     @Override
     public int getScore() {
-        return this.elementScore*this.hitCount;
+        return this.elementScore * this.hitCount;
     }
 
     @Override
-    public void acceptResetVisitor(Resetvisitor resetvisitor) {
-        resetvisitor.visit(this);
+    public int acceptResetVisitor(Resetvisitor resetvisitor) {
+       return resetvisitor.visit(this);
     }
 
     @Override
     public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
-       return pointsvisitor.visit(this);
+        return pointsvisitor.visit(this);
     }
 }

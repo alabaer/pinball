@@ -18,29 +18,33 @@ public class TargetMediator implements Mediator {
 
     @Override
     public void mediate(Element sender) {
+        // Check if all targets are hit
         if (allTargetsHit()) {
-            System.out.println("Es wurden alle Targets getroffen die Rampe fährt herunter und alle Targets sind wieder aktiv!");
+            System.out.println("All targets hit! Activating targets and ramp.");
+            // Activate all targets and ramp
             for (Element element : elements) {
                 if (element instanceof Target) {
-                    element.setElementStatus(true);
+                    element.setElementStatus(true); // Reset the target
+                    System.out.println("Activating target.");
                 }
-            }
-            for (Element element : elements) {
                 if (element instanceof Ramp) {
-                    element.setElementStatus(true);
+                    element.setElementStatus(true); // Reset the ramp
+                    System.out.println("Activating ramp.");
                 }
             }
+        } else {
+            // If not all targets are hit, only reset the specific target
+            System.out.println("Not all targets are hit yet.");
         }
     }
 
     private boolean allTargetsHit() {
+        // Check if all targets are hit (inactive state means hit)
         for (Element element : elements) {
             if (element instanceof Target && element.getElementStatus()) {
-                return false;
+                return false; // If any target is still active, return false
             }
         }
-        return true;
+        return true; // All targets are hit
     }
 }
-
-

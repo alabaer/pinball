@@ -55,8 +55,8 @@ public class Target implements Element {
     }
 
     @Override
-    public void acceptResetVisitor(Resetvisitor visitor) {
-        visitor.visit(this);
+    public int acceptResetVisitor(Resetvisitor visitor) {
+        return visitor.visit(this);
     }
 
     @Override

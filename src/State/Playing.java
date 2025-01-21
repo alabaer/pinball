@@ -6,7 +6,7 @@ import Visitor.Pointsvisitor;
 import Visitor.Resetvisitor;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Scanner;
 
 public class Playing extends State {
     private final Flipper flipper;
@@ -30,33 +30,70 @@ public class Playing extends State {
     }
 
     public void playBall() throws InterruptedException {
-        Random random = new Random();
         while (flipper.getBalls() > 0) {
-        flipper.getFlipperElementCompositum().hit();
+            flipper.getFlipperElementCompositum().hit();
         }
     }
 
     public void endOfRound() throws InterruptedException {
         int sum = 0;
+        int checksum = 0;
         Pointsvisitor visitor = new Pointsvisitor();
         Resetvisitor reset = new Resetvisitor();
         ArrayList<Element> flipperElements = flipper.getFlipperElementCompositum().getElements();
         for (Element element : flipperElements) {
             sum += element.acceptScoreVisitor(visitor);
-            element.acceptResetVisitor(reset);
+            checksum += element.acceptResetVisitor(reset);
         }
+        System.out.println( sum+ "Elements reset.");
         flipper.getScoreboard().addScore(sum);
-        System.out.println("Your points this round are: " + sum);
+        flipper.getScoreboard().printroundScore();
+        flipper.getScoreboard().setRoundScore(0);
         if (flipper.getBalls() > 0) {
-            flipper.text();
-            System.out.println("Next ball in 3 Seconds");
-            Thread.sleep(3000);
-            playBall();
+            options();
+        } else {
+            end();
         }
-        end();
     }
 
-    public void end() {
+    public void end() throws InterruptedException {
+        DisplayText displayText = flipper.getDisplayTextFactory().displayText("gameover");
+        displayText.create();
+        flipper.getScoreboard().printTotalScore();
+        flipper.getScoreboard().setTotalScore(0);
         flipper.setState(new Endstate(flipper));
+        flipper.text();
+    }
+
+    public void options() throws InterruptedException {
+        Scanner scanner = new Scanner(System.in);
+        boolean waitingToContinue = true; // Loop control variable
+
+        while (waitingToContinue) {
+            System.out.println("Press 1 to continue \nPress 2 to press Start \nPress 3 to insert Coin");
+            int option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    System.out.println("Next ball in 3 Seconds");
+                    Thread.sleep(3000); // Simulate delay
+                    playBall();
+                    waitingToContinue = false;
+                    break;
+
+                case 2:
+                    pressStart();
+                    break;
+
+                case 3:
+                    insertCoin();                    break;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
+            }
+        }
+
     }
 }
+

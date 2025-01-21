@@ -10,18 +10,19 @@ public class NoCredit extends State {
     }
 
     @Override
-    public void insertCoin() {
+    public void insertCoin() throws InterruptedException {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
         displayText.create();
-        flipper.createFlipper();
         flipper.setCredit(flipper.getCredit() + 1);
         System.out.println("Credits: " + flipper.getCredit());
         flipper.setState(new Ready(flipper));
+        flipper.text();
     }
 
     @Override
-    public void pressStart() {
-        System.out.println("No credit entered");
-
+    public void pressStart() throws InterruptedException {
+        DisplayText displayText = flipper.getDisplayTextFactory().displayText("nocredit");
+        displayText.create();
+        flipper.text();
     }
 }

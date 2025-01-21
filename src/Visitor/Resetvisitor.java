@@ -31,9 +31,6 @@ public class Resetvisitor implements Visitor {
 
     @Override
     public int visit(FlipperElementCompositum flipperElementCompositum) {
-        flipperElementCompositum.setElementHitCount(0);
-        flipperElementCompositum.setElementStatus(true);
-        //wird ignoriert
         return 0;
     }
 
@@ -41,7 +38,7 @@ public class Resetvisitor implements Visitor {
         bumper.setElementHitCount(0);
         bumper.setElementStatus(true);
         //2 Bumper
-        return 2;
+        return (int) 0.5;
     }
     public int visit (Slingshot slingshot){
         slingshot.setElementHitCount(0);

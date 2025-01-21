@@ -47,8 +47,8 @@ public class Slingshot implements Element {
     }
 
     @Override
-    public void acceptResetVisitor(Resetvisitor resetvisitor) {
-        resetvisitor.visit(this);
+    public int acceptResetVisitor(Resetvisitor resetvisitor) {
+        return resetvisitor.visit(this);
     }
 
     @Override
