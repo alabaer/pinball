@@ -14,7 +14,7 @@ public class Ready extends State {
     public void insertCoin() throws InterruptedException {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
         displayText.create();
-        flipper.setCredit(flipper.getCredit() + 1);
+        flipper.addCredit();
         flipper.userInterface();
     }
 

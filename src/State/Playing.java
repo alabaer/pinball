@@ -20,7 +20,7 @@ public class Playing extends State {
     public void insertCoin() {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
         displayText.create();
-        flipper.setCredit(flipper.getCredit() + 1);
+        flipper.addCredit();
     }
 
     @Override

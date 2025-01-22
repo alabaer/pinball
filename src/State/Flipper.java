@@ -79,6 +79,10 @@ public class Flipper {
         this.state = state;
     }
 
+    public void addCredit(){
+        credit++;
+    }
+
     public void intro() throws InterruptedException {
         OptionA optionA = new OptionA();
         OptionB optionB = new OptionB();
