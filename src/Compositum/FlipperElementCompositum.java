@@ -1,4 +1,5 @@
 package Compositum;
+
 import FlipperElements.Element;
 import FlipperElements.Ramp;
 import FlipperElements.Target;
@@ -9,19 +10,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class FlipperElementCompositum implements Element {
-    private ArrayList<Element> elements;
+    private final ArrayList<Element> elements;
 
     public FlipperElementCompositum() {
-        elements = new ArrayList<>();
+       this.elements = new ArrayList<>();
     }
 
     public ArrayList<Element> getElements() {
         return elements;
     }
 
-    public void add(Element element) {
-        elements.add(element);
-    }
 
     @Override
     public void hit() throws InterruptedException {
@@ -68,5 +66,9 @@ public class FlipperElementCompositum implements Element {
     @Override
     public int acceptScoreVisitor(Pointsvisitor pointsvisitor) {
         return pointsvisitor.visit(this);
+    }
+
+    public void add(Element element) {
+        elements.add(element);
     }
 }

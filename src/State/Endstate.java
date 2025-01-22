@@ -1,6 +1,5 @@
 package State;
-import FlipperElements.Element;
-import Visitor.Resetvisitor;
+
 
 public class Endstate extends State {
     private Flipper flipper;
@@ -11,8 +10,7 @@ public class Endstate extends State {
 
     @Override
     public void insertCoin() throws InterruptedException {
-        flipper.setCredit(flipper.getCredit() + 1);
-        System.out.println("Nothing happens");
+        System.out.println("Nothing happens. Press start");
         flipper.userInterface();
     }
 
@@ -23,11 +21,6 @@ public class Endstate extends State {
             flipper.setState(ready);
             flipper.userInterface();
         } else {
-            System.out.println("Not enough credits. Insert a coin first.");
-            Resetvisitor resetvisitor = new Resetvisitor();
-            for (Element element : flipper.getFlipperElementCompositum().getElements()) {
-                element.acceptResetVisitor(resetvisitor);
-            }
             flipper.setState(new NoCredit(flipper));
             flipper.userInterface();
         }

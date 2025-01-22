@@ -15,7 +15,6 @@ public class Ready extends State {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
         displayText.create();
         flipper.setCredit(flipper.getCredit() + 1);
-        System.out.println("Credits: " + flipper.getCredit());
         flipper.userInterface();
     }
 

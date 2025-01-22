@@ -30,6 +30,17 @@ public class Flipper {
     private final Scoreboard scoreboard = new Scoreboard();
     private boolean isRunning = true;
 
+    private Flipper() {
+        state = new NoCredit(this);
+    }
+
+    public static synchronized Flipper getInstance() {
+        if (instance == null) {
+            instance = new Flipper();
+        }
+        return instance;
+    }
+
     public boolean getIsRunning() {
         return isRunning;
     }
@@ -42,13 +53,14 @@ public class Flipper {
         return this.credit;
     }
 
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
     public AbstractFactory<DisplayText> getDisplayTextFactory() {
         return this.factory;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
 
     public Scoreboard getScoreboard() {
         return scoreboard;
@@ -62,16 +74,6 @@ public class Flipper {
         this.balls = balls;
     }
 
-    private Flipper() {
-        state = new NoCredit(this);
-    }
-
-    public static synchronized Flipper getInstance() {
-        if (instance == null) {
-            instance = new Flipper();
-        }
-        return instance;
-    }
 
     public void setState(State state) {
         this.state = state;
@@ -106,7 +108,7 @@ public class Flipper {
 
     public void userInterface() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Credits: "+credit+"\nPress 1: Enter Coin \n Press 2:Start \n Press 3: Exit \n Choice: ");
+        System.out.println("Credits: " + credit + "\nPress 1: Enter Coin \n Press 2:Start \n Press 3: Exit \n Choice: ");
         int input = scanner.nextInt();
         if (input == 1) {
             this.state.insertCoin();
@@ -123,20 +125,9 @@ public class Flipper {
     }
 
     public Command commandRandomizer() {
+        ArrayList<Command> commands = createdCommands();
         Random random = new Random();
-        LoseBallCommand loseBallCommand = new LoseBallCommand(this);
-        Minigame minigame = new Minigame(scoreboard);
-        LuckyShot luckyShot = new LuckyShot(scoreboard);
-        Flashinglights flash = new Flashinglights();
-        ArrayList<Command> commands = new ArrayList<>();
-        FlashinglightsCommandAdapter flashinglightsCommandAdapter = new FlashinglightsCommandAdapter(flash);
-        CommandCompositum commandCompositum = new CommandCompositum();
-        commandCompositum.addCommand(luckyShot);
-        commandCompositum.addCommand(flashinglightsCommandAdapter);
-        commands.add(loseBallCommand);
-        commands.add(commandCompositum);
-        commands.add(minigame);
-        int randomNumber = random.nextInt(3);
+        int randomNumber = random.nextInt(commands.size());
         return commands.get(randomNumber);
     }
 
@@ -165,5 +156,21 @@ public class Flipper {
         flipperElementCompositum.add(slingshot);
         flipperElementCompositum.add(outlane);
         mediator.element(flipperElementCompositum.getElements());
+    }
+
+    public ArrayList<Command> createdCommands() {
+        ArrayList<Command> commands = new ArrayList<Command>();
+        LoseBallCommand loseBallCommand = new LoseBallCommand(this);
+        Minigame minigame = new Minigame(scoreboard);
+        LuckyShot luckyShot = new LuckyShot(scoreboard);
+        Flashinglights flash = new Flashinglights();
+        FlashinglightsCommandAdapter flashinglightsCommandAdapter = new FlashinglightsCommandAdapter(flash);
+        CommandCompositum commandCompositum = new CommandCompositum();
+        commandCompositum.addCommand(luckyShot);
+        commandCompositum.addCommand(flashinglightsCommandAdapter);
+        commands.add(loseBallCommand);
+        commands.add(commandCompositum);
+        commands.add(minigame);
+        return commands;
     }
 }
