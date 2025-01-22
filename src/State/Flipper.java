@@ -141,6 +141,10 @@ public class Flipper {
     }
 
     public void createFlipper() {
+        //For a guaranteed Losing Condition
+        LoseBallCommand loseBallCommand = new LoseBallCommand(this);
+        Outlane outlane = new Outlane(loseBallCommand);
+
         //evtl. elementID und mit loops kreieren
         Target target1 = new Target(commandRandomizer(), this.mediator);
         Target target2 = new Target(commandRandomizer(), this.mediator);
@@ -159,6 +163,7 @@ public class Flipper {
         flipperElementCompositum.add(bumper2);
         flipperElementCompositum.add(hole);
         flipperElementCompositum.add(slingshot);
+        flipperElementCompositum.add(outlane);
         mediator.element(flipperElementCompositum.getElements());
     }
 }

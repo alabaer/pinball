@@ -30,6 +30,11 @@ public class Pointsvisitor implements Visitor {
     }
 
     @Override
+    public int visit(Outlane outlane) {
+        return outlane.getScore();
+    }
+
+    @Override
     public int visit(FlipperElementCompositum flipperElementCompositum) {
         return flipperElementCompositum.getScore();
     }

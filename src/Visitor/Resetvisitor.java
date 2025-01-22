@@ -27,6 +27,13 @@ public class Resetvisitor implements Visitor {
     }
 
     @Override
+    public int visit(Outlane outlane) {
+        outlane.setElementHitCount(0);
+        outlane.setElementStatus(true);
+        return 1;
+    }
+
+    @Override
     public int visit(FlipperElementCompositum flipperElementCompositum) {
         return 0;
     }
@@ -41,4 +48,5 @@ public class Resetvisitor implements Visitor {
         slingshot.setElementStatus(true);
         return 1;
     }
+
 }

@@ -9,6 +9,8 @@ public interface Visitor {
     int visit (Ramp ramp);
     int visit (Slingshot slingshot);
     int visit (Target target);
+    int visit (Outlane outlane);
     int visit (FlipperElementCompositum flipperElementCompositum);
+
 
 }
