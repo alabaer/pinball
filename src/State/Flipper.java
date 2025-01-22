@@ -23,7 +23,6 @@ public class Flipper {
     }
 
     private AbstractFactory<DisplayText> factory = null;
-    private DisplayText displayText;
     private int credit;
     private FlipperElementCompositum flipperElementCompositum;
     private int balls = 3;
@@ -78,29 +77,7 @@ public class Flipper {
         this.state = state;
     }
 
-    public State getState() {
-        return this.state;
-    }
-
-    public void text() throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Press 1: Enter Coin \n Press 2:Play \n Press 3: Exit \n Choice: " + this.state);
-        int input = scanner.nextInt();
-        if (input == 1) {
-            this.state.insertCoin();
-        } else if (input == 2) {
-            this.state.pressStart();
-
-        } else if (input == 3) {
-            System.out.println("Exiting the program. Goodbye!");
-            System.exit(0);
-        } else {
-            System.out.println("Invalid input");
-            text();
-        }
-    }
-
-    public void chooseFont() throws InterruptedException {
+    public void intro() throws InterruptedException {
         OptionA optionA = new OptionA();
         OptionB optionB = new OptionB();
         Scanner scanner = new Scanner(System.in);
@@ -113,22 +90,39 @@ public class Flipper {
             case 1:
                 AbstractFactoryA textA = new AbstractFactoryA();
                 this.factory = textA;
-                text();
+                userInterface();
                 break;
             case 2:
                 AbstractFactoryB textB = new AbstractFactoryB();
                 this.factory = textB;
-                text();
+                userInterface();
                 break;
             default:
                 System.out.println("Invalid input. Please try again.");
-                chooseFont();
+                intro();
                 break;
         }
     }
 
-    //refactoren wo es gut dazupasst
-    public Command createCommand() {
+    public void userInterface() throws InterruptedException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Credits: "+credit+"\nPress 1: Enter Coin \n Press 2:Start \n Press 3: Exit \n Choice: ");
+        int input = scanner.nextInt();
+        if (input == 1) {
+            this.state.insertCoin();
+        } else if (input == 2) {
+            this.state.pressStart();
+
+        } else if (input == 3) {
+            System.out.println("Exiting the program. Goodbye!");
+            System.exit(0);
+        } else {
+            System.out.println("Invalid input");
+            userInterface();
+        }
+    }
+
+    public Command commandRandomizer() {
         Random random = new Random();
         LoseBallCommand loseBallCommand = new LoseBallCommand(this);
         Minigame minigame = new Minigame(scoreboard);
@@ -146,16 +140,16 @@ public class Flipper {
         return commands.get(randomNumber);
     }
 
-    //refactoren wo es gut dazu passt
     public void createFlipper() {
-        Target target1 = new Target(createCommand(), this.mediator);
-        Target target2 = new Target(createCommand(), this.mediator);
-        Target target3 = new Target(createCommand(), this.mediator);
-        Ramp ramp = new Ramp(createCommand(), this.mediator);
-        Bumper bumper1 = new Bumper(createCommand());
-        Bumper bumper2 = new Bumper(createCommand());
-        Hole hole = new Hole(createCommand());
-        Slingshot slingshot = new Slingshot(createCommand());
+        //evtl. elementID und mit loops kreieren
+        Target target1 = new Target(commandRandomizer(), this.mediator);
+        Target target2 = new Target(commandRandomizer(), this.mediator);
+        Target target3 = new Target(commandRandomizer(), this.mediator);
+        Ramp ramp = new Ramp(commandRandomizer(), this.mediator);
+        Bumper bumper1 = new Bumper(commandRandomizer());
+        Bumper bumper2 = new Bumper(commandRandomizer());
+        Hole hole = new Hole(commandRandomizer());
+        Slingshot slingshot = new Slingshot(commandRandomizer());
         this.flipperElementCompositum = new FlipperElementCompositum();
         flipperElementCompositum.add(target1);
         flipperElementCompositum.add(target2);
@@ -166,9 +160,5 @@ public class Flipper {
         flipperElementCompositum.add(hole);
         flipperElementCompositum.add(slingshot);
         mediator.element(flipperElementCompositum.getElements());
-    }
-
-    public AbstractFactory<DisplayText> getDisplayText() {
-        return factory;
     }
 }

@@ -6,7 +6,7 @@ import Visitor.Resetvisitor;
 
 public class Slingshot implements Element {
     private final Command command;
-    private final int elementScore = 50;
+    private final int elementScore = 300;
     public int hitCount = 0;
     private boolean isActive = true;
 

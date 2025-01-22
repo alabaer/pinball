@@ -16,11 +16,12 @@ public class Ready extends State {
         displayText.create();
         flipper.setCredit(flipper.getCredit() + 1);
         System.out.println("Credits: " + flipper.getCredit());
-        flipper.text();
+        flipper.userInterface();
     }
 
     @Override
     public void pressStart() throws InterruptedException {
+        flipper.createFlipper();
         flipper.setCredit(flipper.getCredit() - 1);
         System.out.println("Start Game");
         Thread.sleep(1000);

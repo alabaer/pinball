@@ -11,22 +11,19 @@ public class Resetvisitor implements Visitor {
     public int visit(Ramp ramp) {
         ramp.setElementHitCount(0);
         ramp.setElementStatus(false);
-        //1 Rampe
         return 1;
     }
 
    public int visit(Hole hole) {
         hole.setElementHitCount(0);
         hole.setElementStatus(true);
-        //1 Hole
         return 1;
     }
 
     public int visit(Target target) {
         target.setElementHitCount(0);
         target.setElementStatus(true);
-        //3 Targets
-        return 3;
+        return 1;
     }
 
     @Override
@@ -37,13 +34,11 @@ public class Resetvisitor implements Visitor {
     public int visit(Bumper bumper) {
         bumper.setElementHitCount(0);
         bumper.setElementStatus(true);
-        //2 Bumper
-        return 2;
+        return 1;
     }
     public int visit (Slingshot slingshot){
         slingshot.setElementHitCount(0);
         slingshot.setElementStatus(true);
-        //1 Slingshot
         return 1;
     }
 }

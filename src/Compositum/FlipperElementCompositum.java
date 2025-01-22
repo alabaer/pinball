@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class FlipperElementCompositum implements Element {
-    private Target target1;
-    private Target target2;
-    private Target target3;
-    private Ramp ramp;
     private ArrayList<Element> elements;
 
     public FlipperElementCompositum() {
@@ -41,16 +37,12 @@ public class FlipperElementCompositum implements Element {
 
     @Override
     public void setElementHitCount(int elementHitCount) {
-        for (Element element : elements) {
-            element.setElementHitCount(elementHitCount);
-        }
+        // nutzlos
     }
 
     @Override
     public void setElementStatus(Boolean isActive) {
-        for (Element element : elements) {
-            element.setElementStatus(isActive);
-        }
+        //nutzlos
     }
 
     @Override
@@ -70,10 +62,7 @@ public class FlipperElementCompositum implements Element {
 
     @Override
     public int acceptResetVisitor(Resetvisitor resetvisitor) {
-        for (Element element : elements) {
-            element.acceptResetVisitor(resetvisitor);
-        }
-        return 0;
+        return resetvisitor.visit(this);
     }
 
     @Override

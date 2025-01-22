@@ -12,7 +12,7 @@ public class LuckyShot implements Command {
     @Override
     public void execute() throws InterruptedException {
         System.out.println("Lucky Shot!");
-        scoreboard.addScore(25);
+        scoreboard.addRoundScore(25);
         Thread.sleep(1000);
     }
 }

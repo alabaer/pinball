@@ -45,23 +45,23 @@ public class Playing extends State {
             sum += element.acceptScoreVisitor(visitor);
             element.acceptResetVisitor(reset);
         }
-        flipper.getScoreboard().addScore(sum);
+        flipper.getScoreboard().addRoundScore(sum);
         flipper.getScoreboard().printroundScore();
         flipper.getScoreboard().setRoundScore(0);
         if (flipper.getBalls() > 0) {
             options();
         } else {
-            end();
+            endOfGame();
         }
     }
 
-    public void end() throws InterruptedException {
+    public void endOfGame() throws InterruptedException {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("gameover");
         displayText.create();
         flipper.getScoreboard().printTotalScore();
         flipper.getScoreboard().setTotalScore(0);
         flipper.setState(new Endstate(flipper));
-        flipper.text();
+        flipper.userInterface();
     }
 
     public void options() throws InterruptedException {
@@ -79,7 +79,6 @@ public class Playing extends State {
                     waitingToContinue = false;
                     flipper.setIsRunning(true);
                     playBall();
-
                     break;
 
                 case 2:

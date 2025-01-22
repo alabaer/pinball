@@ -4,9 +4,6 @@ public class Scoreboard {
     private int roundScore;
     private int totalScore;
 
-    public int getTotalScore() {
-        return totalScore;
-    }
 
     public void setRoundScore(int roundScore) {
         this.roundScore = roundScore;
@@ -16,11 +13,8 @@ public class Scoreboard {
         this.totalScore = totalScore;
     }
 
-    public int getRoundScore() {
-        return roundScore;
-    }
 
-    public void addScore(int score) {
+    public void addRoundScore(int score) {
         this.roundScore += score;
         addToTotalScore();
     }

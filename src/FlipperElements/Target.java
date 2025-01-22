@@ -7,7 +7,7 @@ import Visitor.Resetvisitor;
 
 public class Target implements Element {
     private final Command command;
-    private int elementScore = 50;
+    private int elementScore = 75;
     public int hitCount = 0;
     private boolean isActive = true;
     private TargetMediator mediator;

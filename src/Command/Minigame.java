@@ -15,7 +15,7 @@ public class Minigame implements Command {
     @Override
     public void execute() {
         Random random = new Random();
-        int randomNumber = random.nextInt(3) + 1; // Gibt eine Zahl zwischen 1 und 3 zurück
+        int randomNumber = random.nextInt(3) + 1;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Choose a number between 1 and 3: ");
         int userGuess = scanner.nextInt();
@@ -24,10 +24,10 @@ public class Minigame implements Command {
             return;
         }
         if (userGuess == randomNumber) {
-            System.out.println("Richtig geraten! Die zufällige Zahl war " + randomNumber + ".");
-            scoreboard.addScore(200);
+            System.out.println("Right guess! The random number was: " + randomNumber + ".");
+            scoreboard.addRoundScore(200);
         } else {
-            System.out.println("Falsch geraten! Die zufällige Zahl war " + randomNumber + ".");
+            System.out.println("Wrong guess! The random number was: " + randomNumber + ".");
         }
     }
 }

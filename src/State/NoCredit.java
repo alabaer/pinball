@@ -16,13 +16,13 @@ public class NoCredit extends State {
         flipper.setCredit(flipper.getCredit() + 1);
         System.out.println("Credits: " + flipper.getCredit());
         flipper.setState(new Ready(flipper));
-        flipper.text();
+        flipper.userInterface();
     }
 
     @Override
     public void pressStart() throws InterruptedException {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("nocredit");
         displayText.create();
-        flipper.text();
+        flipper.userInterface();
     }
 }
