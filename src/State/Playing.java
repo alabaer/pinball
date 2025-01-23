@@ -25,7 +25,7 @@ public class Playing extends State {
     }
 
     @Override
-    public void pressStart() throws InterruptedException {
+    public void pressStart() {
         System.out.println("David & Magdalena");
     }
 
