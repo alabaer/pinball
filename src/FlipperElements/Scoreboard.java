@@ -16,10 +16,9 @@ public class Scoreboard {
 
     public void addRoundScore(int score) {
         this.roundScore += score;
-        addToTotalScore();
     }
 
-    private void addToTotalScore() {
+    public void addToTotalScore() {
         this.totalScore += this.roundScore;
     }
 

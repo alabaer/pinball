@@ -46,6 +46,7 @@ public class Playing extends State {
             element.acceptResetVisitor(reset);
         }
         flipper.getScoreboard().addRoundScore(sum);
+        flipper.getScoreboard().addToTotalScore();
         flipper.getScoreboard().printRoundScore();
         flipper.getScoreboard().printTotalScore();
         flipper.getScoreboard().setRoundScore(0);
@@ -61,7 +62,6 @@ public class Playing extends State {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("gameover");
         displayText.create();
         flipper.getScoreboard().printTotalScore();
-        flipper.getScoreboard().setRoundScore(0);
         flipper.getScoreboard().setTotalScore(0);
         flipper.setBalls(3);
         flipper.setState(new Endstate(flipper));

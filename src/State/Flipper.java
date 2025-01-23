@@ -66,6 +66,7 @@ public class Flipper {
         return scoreboard;
     }
 
+
     public int getBalls() {
         return this.balls;
     }
