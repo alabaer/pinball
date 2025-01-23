@@ -7,6 +7,7 @@ public class Main {
         welcome.create();
         Thread.sleep(2000);
         Flipper flipper = Flipper.getInstance();
+        flipper.createFlipper();
         flipper.intro();
     }
 

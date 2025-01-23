@@ -25,7 +25,7 @@ public class Flipper {
     private AbstractFactory<DisplayText> factory = null;
     private int credit;
     private FlipperElementCompositum flipperElementCompositum;
-    private int balls = 3;
+    private int balls = 0;
     private final TargetMediator mediator = new TargetMediator();
     private final Scoreboard scoreboard = new Scoreboard();
     private boolean isRunning = true;

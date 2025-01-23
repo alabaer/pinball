@@ -20,7 +20,7 @@ public class Ready extends State {
 
     @Override
     public void pressStart() throws InterruptedException {
-        flipper.createFlipper();
+        flipper.setBalls(3);
         flipper.setCredit(flipper.getCredit() - 1);
         System.out.println("Start Game");
         Thread.sleep(1000);
