@@ -19,7 +19,7 @@ public class Endstate extends State {
         if (flipper.getCredit() > 0) {
             Ready ready = new Ready(flipper);
             flipper.setState(ready);
-            ready.pressStart();
+            flipper.userInterface();
         } else {
             flipper.setState(new NoCredit(flipper));
             flipper.userInterface();
