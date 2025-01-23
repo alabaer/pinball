@@ -57,11 +57,13 @@ public class Playing extends State {
     }
 
     public void endOfGame() throws InterruptedException {
+        flipper.setIsRunning(true);
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("gameover");
         displayText.create();
         flipper.getScoreboard().printTotalScore();
         flipper.getScoreboard().setRoundScore(0);
         flipper.getScoreboard().setTotalScore(0);
+        flipper.setBalls(3);
         flipper.setState(new Endstate(flipper));
         flipper.userInterface();
     }
