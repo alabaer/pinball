@@ -16,6 +16,7 @@ public class Endstate extends State {
 
     @Override
     public void pressStart() throws InterruptedException {
+        flipper.resetGame();
         if (flipper.getCredit() > 0) {
             Ready ready = new Ready(flipper);
             flipper.setState(ready);

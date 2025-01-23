@@ -23,7 +23,7 @@ public class Scoreboard {
         this.totalScore += this.roundScore;
     }
 
-    public void printroundScore() {
+    public void printRoundScore() {
         System.out.println("Your score this round is: " + this.roundScore);
     }
 

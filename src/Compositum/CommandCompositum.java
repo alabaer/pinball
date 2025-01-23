@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandCompositum implements Command {
-    private List<Command> commands;
+    private final List<Command> commands;
 
     public CommandCompositum() {
         this.commands = new ArrayList<Command>();

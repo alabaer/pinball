@@ -23,6 +23,9 @@ public class Ready extends State {
         flipper.createFlipper();
         flipper.setCredit(flipper.getCredit() - 1);
         System.out.println("Start Game");
+        flipper.getScoreboard().printTotalScore();
+        flipper.getScoreboard().printRoundScore();
+
         Thread.sleep(1000);
         Playing playing = new Playing(flipper);
         flipper.setState(playing);

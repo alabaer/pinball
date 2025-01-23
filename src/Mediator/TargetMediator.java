@@ -35,7 +35,7 @@ public class TargetMediator implements Mediator {
         }
     }
 
-    private boolean allTargetsHit() {
+    public boolean allTargetsHit() {
         for (Element element : elements) {
             if (element instanceof Target && element.getElementStatus()) {
                 return false;

@@ -79,6 +79,8 @@ public class Flipper {
         this.state = state;
     }
 
+    public State getState() {return this.state;}
+
     public void addCredit(){
         credit++;
     }
@@ -176,5 +178,13 @@ public class Flipper {
         commands.add(commandCompositum);
         commands.add(minigame);
         return commands;
+    }
+
+    public void resetGame() {
+        mediator.allTargetsHit();
+        getScoreboard().setRoundScore(0);
+        getScoreboard().setTotalScore(0);
+        setIsRunning(true);
+        setBalls(3);
     }
 }

@@ -21,10 +21,11 @@ public class Playing extends State {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("coindrop");
         displayText.create();
         flipper.addCredit();
+        System.out.println("New Credit: " + flipper.getCredit());
     }
 
     @Override
-    public void pressStart() {
+    public void pressStart() throws InterruptedException {
         System.out.println("David & Magdalena");
     }
 
@@ -45,7 +46,8 @@ public class Playing extends State {
             element.acceptResetVisitor(reset);
         }
         flipper.getScoreboard().addRoundScore(sum);
-        flipper.getScoreboard().printroundScore();
+        flipper.getScoreboard().printRoundScore();
+        flipper.getScoreboard().printTotalScore();
         flipper.getScoreboard().setRoundScore(0);
         if (flipper.getBalls() > 0) {
             options();
@@ -58,6 +60,7 @@ public class Playing extends State {
         DisplayText displayText = flipper.getDisplayTextFactory().displayText("gameover");
         displayText.create();
         flipper.getScoreboard().printTotalScore();
+        flipper.getScoreboard().setRoundScore(0);
         flipper.getScoreboard().setTotalScore(0);
         flipper.setState(new Endstate(flipper));
         flipper.userInterface();
@@ -68,7 +71,8 @@ public class Playing extends State {
         boolean waitingToContinue = true;
 
         while (waitingToContinue) {
-            System.out.println("Press 1 to continue \nPress 2 to press Start \nPress 3 to insert Coin");
+            System.out.println(("Remaining Balls: " + flipper.getBalls()));
+            System.out.println("Press 1 to continue \nPress 2 to Start a new Game \nPress 3 to insert Coin");
             int option = scanner.nextInt();
 
             switch (option) {
@@ -81,7 +85,9 @@ public class Playing extends State {
                     break;
 
                 case 2:
-                    pressStart();
+                    flipper.resetGame();
+                    flipper.setState(new Ready(flipper));
+                    flipper.getState().pressStart();
                     break;
 
                 case 3:
