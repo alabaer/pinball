@@ -16,6 +16,7 @@ public class Outlane implements Element {
 
     @Override
     public void hit() throws InterruptedException {
+        System.out.println("Outlane hit! -50 Points!");
         hitCount++;
         command.execute();
     }
